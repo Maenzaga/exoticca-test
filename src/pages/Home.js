@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Slide from "../components/Slide/Slide";
 import getCard from "../services/cardService";
 
 export default function Home() {
@@ -8,7 +8,6 @@ export default function Home() {
 
   useEffect(() => {
     getCard().then((result) => {
-      console.log(result);
       setCards(result);
       setLoaded(true);
     });
@@ -19,11 +18,12 @@ export default function Home() {
       {!loaded ? (
         <>loading...</>
       ) : (
-        <div>
-          <h1>Exercise1</h1>
+        <div className="mainContainer">
+          <h1>Carrousel</h1>
           <div>
             {cards.slides.map((card) => {
-              return <h1>{card.name}</h1>;
+              console.log(card.cards);
+              return <Slide props={card} />;
             })}
           </div>
         </div>
